@@ -29,6 +29,8 @@ namespace CPW219_AspnetMVC_CRUD_Debugging.Controllers
             if (ModelState.IsValid)
             {
                 await _context.AddAsync(product);
+                // BUG FOUND: Executes impending insert 
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(product);
