@@ -29,7 +29,7 @@ namespace CPW219_AspnetMVC_CRUD_Debugging.Controllers
             if (ModelState.IsValid)
             {
                 await _context.AddAsync(product);
-                // BUG FOUND: Executes impending insert 
+                // BUG FOUND: Code is missing that executes impending insert 
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -79,6 +79,8 @@ namespace CPW219_AspnetMVC_CRUD_Debugging.Controllers
         {
             var product = await _context.Product.FindAsync(id);
             _context.Product.Remove(product);
+            // BUG FOUND: Code is missing that executes impending insert  
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
