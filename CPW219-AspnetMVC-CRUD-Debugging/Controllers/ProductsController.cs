@@ -35,10 +35,12 @@ namespace CPW219_AspnetMVC_CRUD_Debugging.Controllers
             }
             return View(product);
         }
-
+        // Missing HttpGet
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var product = await _context.Product.FindAsync(id);
+
             if (product == null)
             {
                 return NotFound();
